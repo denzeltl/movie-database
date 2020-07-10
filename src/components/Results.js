@@ -6,7 +6,7 @@ function Results({ results }) {
     return (
         <ul className="results">
             {results.map((result) => (
-                <Result result={result} />
+                <Result key={result.imdbID} result={result} />
             ))}
         </ul>
     );

@@ -24,12 +24,16 @@ function App() {
         e.preventDefault();
         axios.get(`${apiUrl}&s=${state.searchbar}`).then(({ data }) => {
             let results = data.Search;
-            setState((prevState) => {
-                return {
-                    ...prevState,
-                    results: results,
-                };
-            });
+            if (results) {
+                setState((prevState) => {
+                    return {
+                        ...prevState,
+                        results: results,
+                    };
+                });
+            } else {
+                return;
+            }
         });
     };
 
