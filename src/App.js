@@ -1,17 +1,47 @@
-import React from 'react';
-import './App.css';
+import React, { useState } from 'react';
+import axios from 'axios';
+import Search from './components/Search';
+import Results from './components/Results';
 
 function App() {
+    const [state, setState] = useState({
+        searchbar: '',
+        results: [],
+        movie: {},
+    });
+    const apiUrl = 'http://www.omdbapi.com/?i=tt3896198&apikey=bb6aec01';
+
+    const handleInput = (e) => {
+        let searchbar = e.target.value;
+        setState((prevState) => {
+            return {
+                ...prevState,
+                searchbar: searchbar,
+            };
+        });
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.get(`${apiUrl}&s=${state.searchbar}`).then(({ data }) => {
+            let results = data.Search;
+            setState((prevState) => {
+                return {
+                    ...prevState,
+                    results: results,
+                };
+            });
+        });
+    };
+
     return (
         <div className="App">
-            <header className="App-header">
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-                    Learn React
-                </a>
+            <header>
+                <h1>Movie Database App</h1>
             </header>
+            <main>
+                <Search handleInput={handleInput} value={state.searchbar} handleSubmit={handleSubmit} />
+                <Results results={state.results} />
+            </main>
         </div>
     );
 }
