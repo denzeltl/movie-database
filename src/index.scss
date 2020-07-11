@@ -64,7 +64,6 @@ main {
             font-weight: bold;
             color: #333;
             cursor: pointer;
-            transition: all 0.2s;
             border: none;
         }
     }
@@ -79,9 +78,10 @@ main {
             width: 23%;
             height: 100%;
             cursor: pointer;
-            background: rgb(94, 94, 98);
+            background: rgb(75, 75, 84);
             padding: 1rem;
             transition: all 0.3s;
+            box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.4);
             &:nth-child(4n + 4) {
                 margin-right: 0;
             }
@@ -101,17 +101,299 @@ main {
             }
         }
     }
+
+    .popup {
+        position: fixed;
+        padding: 5rem 10rem;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.7);
+        .container {
+            background: rgb(75, 75, 84);
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            padding: 2rem 4rem;
+            overflow: auto;
+            .head {
+                margin-bottom: 2rem;
+                &__title {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 0.4rem;
+                    .title {
+                        margin-right: 6rem;
+                        font-size: 1.6rem;
+                        text-align: left;
+                        span {
+                            font-size: 1.4rem;
+                            color: rgb(167, 167, 167);
+                        }
+                    }
+                    .rating {
+                        display: flex;
+                        align-items: center;
+                        img {
+                            width: 3rem;
+                            margin-right: 0.2rem;
+                        }
+                        & > div {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: start;
+                            align-items: start;
+                            .rate {
+                                font-size: 0.9rem;
+                                color: rgb(167, 167, 167);
+                                span {
+                                    font-size: 1.6rem;
+                                    color: #fff;
+                                }
+                            }
+                            .votes {
+                                color: rgb(167, 167, 167);
+                                font-size: 0.9rem;
+                            }
+                        }
+                    }
+                }
+                &__details {
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    p {
+                        font-size: 0.9rem;
+                        color: #fff;
+                        padding: 0 1rem;
+                        border-right: 1px solid rgb(167, 167, 167);
+                        line-height: 1;
+                        &:first-child {
+                            padding-left: 0;
+                        }
+                        &:last-child {
+                            padding-right: 0;
+                            border-right: 0;
+                        }
+                    }
+                }
+            }
+            .body {
+                display: flex;
+                align-items: flex-start;
+                justify-content: space-between;
+                margin-bottom: 2rem;
+                img {
+                    width: 14rem;
+                    margin-right: 2rem;
+                }
+                & > div {
+                    text-align: left;
+                    font-size: 1rem;
+                    p {
+                        span {
+                            font-weight: bold;
+                            color: rgb(167, 167, 167);
+                        }
+                    }
+                    .plot {
+                        margin-bottom: 2rem;
+                    }
+                    .director,
+                    .writers,
+                    .casts {
+                        margin-bottom: 1rem;
+                    }
+                }
+            }
+            .button {
+                width: 10rem;
+                cursor: pointer;
+                background: rgb(84, 208, 214);
+                line-height: 2.2rem;
+                font-size: 1.2rem;
+                border-radius: 0.75rem;
+                font-family: 'Muli', sans-serif;
+                border: none;
+                outline: none;
+                font-weight: bold;
+                color: #333;
+            }
+        }
+        &.hidden {
+            display: none;
+        }
+    }
 }
 
 /* Media Queries */
-@media screen and (max-width: 1200px) {
-}
+@media screen and (max-width: 1150px) {
+    html {
+        font-size: 15px;
+    }
 
-@media screen and (max-width: 992px) {
+    #root {
+        max-width: 100%;
+    }
+
+    .App {
+        padding: 4rem 3rem;
+    }
+
+    main {
+        .search {
+            width: 70%;
+        }
+
+        .results {
+            li {
+                margin-right: 4%;
+                width: 22%;
+            }
+        }
+
+        .popup {
+            padding: 5rem 7rem;
+            .container {
+                .body {
+                    img {
+                        width: 11rem;
+                    }
+                }
+            }
+        }
+    }
 }
 
 @media screen and (max-width: 768px) {
+    html {
+        font-size: 14px;
+    }
+
+    #root {
+        max-width: 100%;
+    }
+
+    .App {
+        padding: 3rem;
+    }
+
+    main {
+        .search {
+            width: 100%;
+        }
+
+        .results {
+            li {
+                margin-right: 5%;
+                width: 30%;
+                &:nth-child(3n + 3) {
+                    margin-right: 0;
+                }
+                &:nth-child(4n + 4) {
+                    margin-right: 5%;
+                }
+                &:nth-child(n + 4) {
+                    margin-top: 2rem;
+                }
+            }
+        }
+
+        .popup {
+            padding: 4rem;
+            .container {
+                padding: 2rem;
+                .body {
+                    img {
+                        width: 10rem;
+                    }
+                }
+            }
+        }
+    }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 560px) {
+    html {
+        font-size: 11px;
+    }
+
+    main {
+        .results {
+            li {
+                margin-right: 6%;
+                width: 47%;
+                &:nth-child(2n + 2) {
+                    margin-right: 0;
+                }
+                &:nth-child(3n + 3) {
+                    margin-right: 0;
+                }
+                &:nth-child(4n + 4) {
+                    margin-right: 0;
+                }
+                &:nth-child(odd) {
+                    margin-right: 6%;
+                }
+                &:nth-child(n + 3) {
+                    margin-top: 2rem;
+                }
+            }
+        }
+
+        .popup {
+            padding: 2.5rem;
+            .container {
+                padding: 2rem;
+                .head {
+                    margin-bottom: 1.8rem;
+                    &__title {
+                        .title {
+                            margin-right: 2rem;
+                            font-size: 1.4rem;
+                            span {
+                                font-size: 1.1rem;
+                            }
+                        }
+                        .rating {
+                            img {
+                                width: 2.4rem;
+                            }
+                            & > div {
+                                .rate {
+                                    font-size: 0.8rem;
+                                    span {
+                                        font-size: 1.4rem;
+                                    }
+                                }
+                                .votes {
+                                    font-size: 0.8rem;
+                                }
+                            }
+                        }
+                    }
+                    &__details {
+                        p {
+                            font-size: 0.8rem;
+                            padding: 0 0.7rem;
+                        }
+                    }
+                }
+                .body {
+                    flex-direction: column;
+                    align-items: center;
+                    img {
+                        width: 12rem;
+                        margin-right: 0;
+                        margin-bottom: 1.5rem;
+                    }
+                    & > div {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
 }
