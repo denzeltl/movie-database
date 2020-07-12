@@ -14,7 +14,7 @@ function App() {
         searchUndefined: false,
         movieLoading: false,
     });
-    const apiUrl = 'http://www.omdbapi.com/?&apikey=bb6aec01';
+    const apiUrl = 'https://www.omdbapi.com/?&apikey=bb6aec01';
 
     const handleInput = (e) => {
         let searchbar = e.target.value;
