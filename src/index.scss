@@ -68,6 +68,10 @@ main {
         }
     }
 
+    .no-results {
+        font-size: 1.3rem;
+    }
+
     .results {
         display: flex;
         align-items: start;
@@ -211,7 +215,7 @@ main {
             .button {
                 width: 10rem;
                 cursor: pointer;
-                background: rgb(84, 208, 214);
+                background: #54d0d6;
                 line-height: 2.2rem;
                 font-size: 1.2rem;
                 border-radius: 0.75rem;
